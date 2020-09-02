@@ -3,6 +3,8 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="ImageTest.Views.AboutPage"
              xmlns:vm="clr-namespace:ImageTest.ViewModels"
+	xmlns:imgcrop="clr-namespace:DLToolkit.Forms.Controls;assembly=DLToolkit.Forms.Controls.ImageCropView"
+	xmlns:fftransformations="clr-namespace:FFImageLoading.Transformations;assembly=FFImageLoading.Transformations"
              Title="{Binding Title}">
     
     <ContentPage.BindingContext>
@@ -27,7 +29,19 @@
                 </ContentView>
             </StackLayout>
         </StackLayout>
-        <ScrollView Grid.Row="1">
+		<StackLayout BackgroundColor="{StaticResource Accent}" VerticalOptions="FillAndExpand" HorizontalOptions="Fill">
+			<StackLayout Orientation="Horizontal" HorizontalOptions="Center" VerticalOptions="Center">
+				<imgcrop:ImageCropView x:Name="picture"
+								VerticalOptions="Center"
+								HorizontalOptions="Center"
+								HeightRequest="80" WidthRequest="80" >
+					<imgcrop:ImageCropView.PreviewTransformations>
+						<fftransformations:CircleTransformation />
+					</imgcrop:ImageCropView.PreviewTransformations>
+				</imgcrop:ImageCropView>
+			</StackLayout>
+		</StackLayout>
+		<ScrollView Grid.Row="1">
             <StackLayout Orientation="Vertical" Padding="30,24,30,24" Spacing="10">
                 <Label Text="Start developing now" FontSize="Title"/>
                 <Label Text="Make changes to your XAML file and save to see your UI update in the running app with XAML Hot Reload. Give it a try!" FontSize="16" Padding="0,0,0,0"/>
